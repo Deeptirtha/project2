@@ -1,6 +1,5 @@
-//const internsontroller = require("../name/filename");
-// if college api in anothrer folder
- const collegeController = require("../controller/collagecontroller");
+ const {createcollege,getintern} = require("../controller/collagecontroller");
+ const internController = require("../controller/interncontroller")
 
 
 const express = require("express")
@@ -8,14 +7,12 @@ const router = express.Router();
 
 
 
-//college
-router.post('/functionup/colleges',collegeController.createcollege)
 
-// // interns
-// router.post('/functionup/interns',)
+router.post('/functionup/colleges',createcollege)
 
-// //get
-// router.get('/functionup/collegeDetails')
+router.post('/functionup/interns',internController)
+
+ router.get('/functionup/collegeDetails',getintern)
 
 
 module.exports = router
