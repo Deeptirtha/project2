@@ -8,11 +8,11 @@ const express = require("express")
 const router = express.Router();
 
 // interns
-router.post('/functionup/interns',internsontroller.function)
+router.post('/functionup/interns',)
 //college
-router.post('/functionup/colleges'collegeController.funtion)
+router.post('/functionup/colleges')
 //get
-router.get('/functionup/collegeDetails'key)
+router.get('/functionup/collegeDetails')
 
 
 module.exports = router
