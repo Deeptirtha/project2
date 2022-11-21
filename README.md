@@ -17,6 +17,13 @@ The logo link will be provided to you by the mentors. This link is a s3 (Amazon'
 
 ## Endpoint: BASE_URL/functionup/colleges
 
+## POST /functionup/colleges
+Create a college - a document for each member of the group
+
+The logo link will be provided to you by the mentors. This link is a s3 (Amazon's Simple Service) url. Try accessing the link to see if the link is public or not.
+
+Endpoint: BASE_URL/functionup/colleges
+
 ## POST /functionup/interns
 Create a document for an intern.
 
