@@ -1,18 +1,21 @@
-const internsontroller = require("../name/filename");
+//const internsontroller = require("../name/filename");
 // if college api in anothrer folder
- const collegeController = require("../name/filename");
+ const collegeController = require("../controller/collagecontroller");
 
-// if middleware 
-//const MW = require("../Middlewares/auth");
+
 const express = require("express")
 const router = express.Router();
 
-// interns
-router.post('/functionup/interns',)
+
+
 //college
-router.post('/functionup/colleges')
-//get
-router.get('/functionup/collegeDetails')
+router.post('/functionup/colleges',collegeController.createcollege)
+
+// // interns
+// router.post('/functionup/interns',)
+
+// //get
+// router.get('/functionup/collegeDetails')
 
 
 module.exports = router

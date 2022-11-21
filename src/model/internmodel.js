@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const objectId=mongoose.Schema.Types.objectId
+const objectId=mongoose.Schema.Types.ObjectId
 const internSchema=new mongoose.Schema({
     name:{
         type:String,
@@ -19,7 +19,7 @@ const internSchema=new mongoose.Schema({
     collegeId:{
         type:objectId,
         required:true,
-        ref:"",
+        ref:"College",
     },
     isdeleted:{
         type:Boolean,
