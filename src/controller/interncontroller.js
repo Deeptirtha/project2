@@ -9,11 +9,15 @@ const createIntern=async (req,res)=>{
         let data =req.body
         if(Object.keys(data)==0){return res.status(400).send({status:false,msg:"body is empty can not creat any thing"})}
 
-        data.name=req.body.name.trim()
-        data.collegeName=req.body.collegeName.trim()
+      
         let newarr=["name","email","mobile","collegeName"]
         for(field of newarr){
-            if(!data[field])return  res.status(400).send({status:false,msg:`${field} is empty input valid name`})}
+            if(!data[field])return  res.status(400).send({status:false,msg:`${field} is empty input valid Data `})}
+
+            data.name=req.body.name.trim()
+            data.collegeName=req.body.collegeName.trim()
+            data.email=req.body.email.trim()
+            data.mobile=req.body.mobile.trim()
 
         if (validName.test(data.collegeName)) return res.status(400).send({ status: false, message: "please provide valid collegename" })
         if (validName.test(data.name)) return res.status(400).send({ status: false, message: "please provide valid name" })
@@ -26,10 +30,11 @@ const createIntern=async (req,res)=>{
 
         data.collegeId = collegeId._id;
 
-        let students = await interModel.findOne({$or: [{ email: data.email }, { mobile: data.mobile }] });
-        if (students) return res.status(400).send({ status: false, message: "Email or Mobile number already exist" })
+        let students = await interModel.findOne({$or: [{email: data.email},{mobile:data.mobile}]});
+        if (students) return res.status(400).send({ status: false, message: "Email or Mobile No already exist try different" })
+        delete data.collegeName
     
-        let intern = await interModel.create({name:data.name,email:data.email,mobile:data.mobile,collegeId:data.collegeId})
+        let intern = await interModel.create(data)
         let InterData=intern.toObject();
 
         ["_id","isdeleted","__v"].forEach(x=>delete InterData[x])

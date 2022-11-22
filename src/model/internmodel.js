@@ -3,7 +3,8 @@ const objectId=mongoose.Schema.Types.ObjectId
 const internSchema=new mongoose.Schema({
     name:{
         type:String,
-        required:true
+        required:true,
+        trim:true
     },
     email:{
         type:String,
@@ -18,7 +19,8 @@ const internSchema=new mongoose.Schema({
     },
     collegeId:{
         type:objectId,
-        required:true
+        required:true,
+        ref:'College'
     },
     isdeleted:{
         type:Boolean,

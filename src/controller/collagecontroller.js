@@ -8,12 +8,15 @@ const createcollege = async (req, res) => {
         let data = req.body
         if (Object.keys(data) == 0) { return res.status(400).send({ status: false, msg: "body is empty can not creat any thing" }) }
 
-        data.name = req.body.name.trim()
-        data.fullName = req.body.fullName.trim()
+      
         let newarr = ["name", "fullName", "logoLink"]
         for (field of newarr) {
             if (!data[field]) return res.status(400).send({ status: false, msg: `${field} is empty input valid name` })
         }
+
+        data.name = req.body.name.trim()
+        data.fullName = req.body.fullName.trim()
+        data.logoLink = req.body.logoLink.trim()
 
         if (validName.test(data.name)) return res.status(400).send({ status: false, msg: "please provide valid name " })
         if (validName.test(data.fullName)) return res.status(400).send({ status: false, msg: "please provide valid fullName" })
