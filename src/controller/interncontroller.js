@@ -1,6 +1,6 @@
 const collegeModel=require("../model/collagemodel")
 const interModel=require("../model/internmodel")
-const {validName, validEmail}=require("../validation/valid")
+const {validName, validEmail,validMobile}=require("../validation/valid")
 
 
 const createIntern=async (req,res)=>{
@@ -18,7 +18,7 @@ const createIntern=async (req,res)=>{
         if (validName.test(data.collegeName)) return res.status(400).send({ status: false, message: "please provide valid collegename" })
         if (validName.test(data.name)) return res.status(400).send({ status: false, message: "please provide valid name" })
         if (!validEmail.test(data.email)) return res.status(400).send({ status: false, message: "please provide valid Email" })
-        if (data.mobile.length<10 || data.mobile.length>10) return res.status(400).send({ status: false, message: "please provide valid Mobilenumber" })
+        if (!validMobile.test(data.mobile)) return res.status(400).send({ status: false, message: "please provide valid Mobilenumber" })
       
 
         let collegeId=await collegeModel.findOne({name:data.collegeName}).select({_id:1})
