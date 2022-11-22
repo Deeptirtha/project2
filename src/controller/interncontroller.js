@@ -19,14 +19,14 @@ const createIntern=async (req,res)=>{
             data.email=req.body.email.trim()
             data.mobile=req.body.mobile.trim()
 
-        if (validName.test(data.collegeName)) return res.status(400).send({ status: false, message: "please provide valid collegename" })
-        if (validName.test(data.name)) return res.status(400).send({ status: false, message: "please provide valid name" })
-        if (!validEmail.test(data.email)) return res.status(400).send({ status: false, message: "please provide valid Email" })
-        if (!validMobile.test(data.mobile)) return res.status(400).send({ status: false, message: "please provide valid Mobilenumber" })
+        if (validName.test(data.collegeName) || !data.collegeName) return res.status(400).send({ status: false, message: "please provide valid collegename" })
+        if (validName.test(data.name) ||!data.name) return res.status(400).send({ status: false, message: "please provide valid name" })
+        if (!validEmail.test(data.email) || !data.email) return res.status(400).send({ status: false, message: "please provide valid Email" })
+        if (!validMobile.test(data.mobile) || !data.mobile) return res.status(400).send({ status: false, message: "please provide valid Mobilenumber" })
       
 
         let collegeId=await collegeModel.findOne({name:data.collegeName}).select({_id:1})
-        if(!collegeId)return res.status(400).send({ status: false, message: "No college found with this name" })
+        if(!collegeId)return res.status(404).send({ status: false, message: "No college found with this name" })
 
         data.collegeId = collegeId._id;
 

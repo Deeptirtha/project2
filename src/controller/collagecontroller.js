@@ -18,10 +18,10 @@ const createcollege = async (req, res) => {
         data.fullName = req.body.fullName.trim()
         data.logoLink = req.body.logoLink.trim()
 
-        if (validName.test(data.name)) return res.status(400).send({ status: false, msg: "please provide valid name " })
-        if (validName.test(data.fullName)) return res.status(400).send({ status: false, msg: "please provide valid fullName" })
-        if (!validUrl.test(data.logoLink)) return res.status(400).send({ status: false, msg: "please provide valid logoLink" })
-
+        if (validName.test(data.name) || !data.name) return res.status(400).send({ status: false, msg: "please provide valid name " })
+        if (validName.test(data.fullName) || !data.fullName) return res.status(400).send({ status: false, msg: "please provide valid fullName" })
+        if (!validUrl.test(data.logoLink) || !data.logoLink) return res.status(400).send({ status: false, msg: "please provide valid logoLink" })
+        
         let college = await collegeModel.findOne({ name: data.name })
         if (college) return res.status(400).send({ status: false, msg: "college already exist" })
 
