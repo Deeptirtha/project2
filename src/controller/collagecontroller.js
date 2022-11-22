@@ -39,7 +39,7 @@ const createcollege = async (req, res) => {
 const getintern = async function (req, res) {
     try {
         let collagename = req.query
-        if (!collagename.hasOwnProperty('name') || Object.keys(collagename).length > 1) { return res.status(400).send({ status: false, msg: "enter valid query" }) }
+        if (!collagename.hasOwnProperty('collegeName') || Object.keys(collagename)>1) { return res.status(400).send({ status: false, msg: "enter valid query" }) }
         collagename.isDeleted = false
 
         if (!collagename) { return res.status(400).send({ status: false, msg: "no query is present" }) }
