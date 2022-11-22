@@ -7,22 +7,17 @@ This time each group should have a single git branch. Coordinate amongst yoursel
 Follow the naming conventions exactly as instructed. The backend code will be integrated with the front-end application which means any mismatch in the expected request body will lead to failure in successful integration.
 ## Models
 ## College Model
-{ name: { mandatory, unique, example iith}, fullName: {mandatory, example `Indian Institute of Technology, Hyderabad`}, logoLink: {mandatory}, isDeleted: {boolean, default: false} }
+{ name: { mandatory, unique, example iith}, fullName: {mandatory, example "Indian Institute of Technology, Hyderabad"}, logoLink: {mandatory}, isDeleted: {boolean, default: false} }
 ## Intern Model
 { name: {mandatory}, email: {mandatory, valid email, unique}, mobile: {mandatory, valid mobile number, unique}, collegeId: {ObjectId, ref to college model, isDeleted: {boolean, default: false}}
-POST /functionup/colleges
+## POST /functionup/colleges
 Create a college - a document for each member of the group
 
 The logo link will be provided to you by the mentors. This link is a s3 (Amazon's Simple Service) url. Try accessing the link to see if the link is public or not.
 
 ## Endpoint: BASE_URL/functionup/colleges
 
-## POST /functionup/colleges
-Create a college - a document for each member of the group
 
-The logo link will be provided to you by the mentors. This link is a s3 (Amazon's Simple Service) url. Try accessing the link to see if the link is public or not.
-
-Endpoint: BASE_URL/functionup/colleges
 
 ## POST /functionup/interns
 Create a document for an intern.
@@ -60,14 +55,14 @@ Error Response structure
   message: ""
 }
 Collections samples
-College
+## College
 {
     "name" : "iith",
     "fullName" : "Indian Institute of Technology, Hyderabad",
     "logoLink" : "https://functionup.s3.ap-south-1.amazonaws.com/colleges/iith.png",
     "isDeleted" : false
 }
-Intern
+## Intern
    {
     "isDeleted" : false,
     "name" : "Jane Does",
@@ -75,7 +70,7 @@ Intern
     "mobile" : "90000900000",
     "collegeId" : ObjectId("888771129c9ea621dc7f5e3b")
 }
-Response samples
+## Response samples
 College details
 {
   "data": {
