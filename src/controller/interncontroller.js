@@ -36,7 +36,7 @@ const createIntern = async (req, res) => {
         let intern = await interModel.create(data)
         let InterData = intern.toObject();
 
-        ["_id", "isdeleted", "__v"].forEach(x => delete InterData[x])
+        ["_id", "__v"].forEach(x => delete InterData[x])
         res.status(201).send({ status: true, Data: InterData })
     }
     catch (err) {
