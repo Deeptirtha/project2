@@ -8,11 +8,8 @@ const createcollege = async (req, res) => {
         let data = req.body
         if (Object.keys(data) == 0) { return res.status(400).send({ status: false, msg: "body is empty can not creat any thing" }) }
 
-      
         let newarr = ["name", "fullName", "logoLink"]
-        for (field of newarr) {
-            if (!data[field]) return res.status(400).send({ status: false, msg: `${field} is empty input valid name` })
-        }
+        for (field of newarr) { if (!data[field]) return res.status(400).send({ status: false, msg: `${field} is empty input valid name` }) }
 
         data.name = req.body.name.trim()
         data.fullName = req.body.fullName.trim()
@@ -21,14 +18,14 @@ const createcollege = async (req, res) => {
         if (validName.test(data.name) || !data.name) return res.status(400).send({ status: false, msg: "please provide valid name " })
         if (validName.test(data.fullName) || !data.fullName) return res.status(400).send({ status: false, msg: "please provide valid fullName" })
         if (!validUrl.test(data.logoLink) || !data.logoLink) return res.status(400).send({ status: false, msg: "please provide valid logoLink" })
-        
+
         let college = await collegeModel.findOne({ name: data.name })
         if (college) return res.status(400).send({ status: false, msg: "college already exist" })
 
         let creatcollege = await collegeModel.create(data)
         let collegedetails = creatcollege.toObject();
 
-        ["_id", "createdAt","__v", "updatedAt"].forEach(x => delete collegedetails[x])
+        ["_id", "createdAt", "__v", "updatedAt"].forEach(x => delete collegedetails[x])
         res.status(201).send({ status: true, Data: collegedetails })
     }
     catch (err) {
@@ -39,7 +36,7 @@ const createcollege = async (req, res) => {
 const getintern = async function (req, res) {
     try {
         let collagename = req.query
-        if (!collagename.hasOwnProperty('collegeName') || Object.keys(collagename)>1) { return res.status(400).send({ status: false, msg: "enter valid query" }) }
+        if (!collagename.hasOwnProperty('collegeName') || Object.keys(collagename) > 1) { return res.status(400).send({ status: false, msg: "enter valid query" }) }
         collagename.isDeleted = false
 
         if (!collagename) { return res.status(400).send({ status: false, msg: "no query is present" }) }
