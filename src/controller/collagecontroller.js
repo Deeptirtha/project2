@@ -38,7 +38,7 @@ const getintern = async function (req, res) {
         let college = req.query
        
         if (!college.hasOwnProperty('collegeName') || Object.keys(college).length > 1) { return res.status(400).send({ status: false, msg: "enter valid query" }) }
-        if (!college) { return res.status(400).send({ status: false, msg: "no query is present" }) }
+       // if (!college) { return res.status(400).send({ status: false, msg: "no query is present" }) }
         
         let result = await collegeModel.findOne({name:college.collegeName,isDeleted:false}).select({ name: 1, fullName: 1, logoLink: 1 }).lean()
         if (!result) { return res.status(404).send({ status: false, msg: "No collage found" }) }

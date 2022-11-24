@@ -24,7 +24,7 @@ const createIntern = async (req, res) => {
         if (!validEmail.test(data.email) || !data.email) return res.status(400).send({ status: false, message: "please provide valid Email" })
         if (!validMobile.test(data.mobile) || !data.mobile) return res.status(400).send({ status: false, message: "please provide valid Mobilenumber" })
 
-        let collegeId = await collegeModel.findOne({ name: data.collegeName }).select({ _id: 1 })
+        let collegeId = await collegeModel.findOne({ name: data.collegeName ,isDeleted:false}).select({ _id: 1 })
         if (!collegeId) return res.status(404).send({ status: false, message: "No college found with this name" })
 
         data.collegeId = collegeId._id;
