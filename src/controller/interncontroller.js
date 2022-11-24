@@ -7,7 +7,7 @@ const createIntern = async (req, res) => {
 
     try {
         let data = req.body
-        if (Object.keys(data) == 0) { return res.status(400).send({ status: false, msg: "body is empty can not creat any thing" }) }
+        if (Object.keys(data).length == 0) { return res.status(400).send({ status: false, msg: "body is empty can not creat any thing" }) }
 
         let newarr = ["name", "email", "mobile", "collegeName"]
         for (field of newarr) {
@@ -21,8 +21,8 @@ const createIntern = async (req, res) => {
 
         if (validName.test(data.collegeName) || !data.collegeName) return res.status(400).send({ status: false, message: "please provide valid collegename" })
         if (validName.test(data.name) || !data.name) return res.status(400).send({ status: false, message: "please provide valid name" })
-        if (!validEmail.test(data.email) || !data.email) return res.status(400).send({ status: false, message: "please provide valid Email" })
-        if (!validMobile.test(data.mobile) || !data.mobile) return res.status(400).send({ status: false, message: "please provide valid Mobilenumber" })
+        if (!validEmail.test(data.email)) return res.status(400).send({ status: false, message: "please provide valid Email" })
+        if (!validMobile.test(data.mobile)) return res.status(400).send({ status: false, message: "please provide valid Mobilenumber" })
 
         let collegeId = await collegeModel.findOne({ name: data.collegeName ,isDeleted:false}).select({ _id: 1 })
         if (!collegeId) return res.status(404).send({ status: false, message: "No college found with this name" })
