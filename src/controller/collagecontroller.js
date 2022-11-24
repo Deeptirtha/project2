@@ -25,7 +25,7 @@ const createcollege = async (req, res) => {
         let creatcollege = await collegeModel.create(data)
         let collegedetails = creatcollege.toObject();
 
-        ["_id", "createdAt", "__v", "updatedAt"].forEach(x => delete collegedetails[x])
+        ["_id","__v"].forEach(x => delete collegedetails[x])
         res.status(201).send({ status: true, Data: collegedetails })
     }
     catch (err) {
